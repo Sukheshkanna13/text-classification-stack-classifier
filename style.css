@@ -4,9 +4,9 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('img.jpeg');
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the background image from repeating */
-    background-size: cover; /* Cover the entire background */
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
 }
 
 

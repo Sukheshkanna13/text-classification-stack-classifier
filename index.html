@@ -1,18 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Classification Web App</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Spam Classifier</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Text Classification</h1>
-        <textarea id="textInput" placeholder="Enter text to classify"></textarea>
-        <button onclick="classifyText()">Classify</button>
-        <div id="result"></div>
-    </div>
-    <script src="script.js"></script>
+  <h1>Spam Classifier</h1>
+  <textarea id="message" rows="5" cols="50"></textarea>
+  <br>
+  <button onclick="classifyText()">Classify</button>
+  <p id="result"></p>
+
+  <script>
+    function classifyText() {
+      const message = $("#message").val();
+      $.ajax({
+        url: '/classify',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ 'text': message }),
+        success: function(data) {
+          const label = data.label; // Assuming the response contains a "label" key
+          $("#result").text("The message is classified as: " + label);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
